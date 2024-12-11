@@ -26,7 +26,6 @@ def day_6_1(lines, start_pos, start_dir,turns):
     curr_pos, curr_dir = start_pos, start_dir
     lines[curr_pos[0]][curr_pos[1]] = "X"
     while infield:
-        ctr += 1
         trial_pos = (curr_pos[0]+curr_dir[0],curr_pos[1]+curr_dir[1])
         # If out of field, do not iterate more
         if trial_pos[0]>y_size or trial_pos[0]<0 or trial_pos[1]>x_size or trial_pos[1]<0:
@@ -41,5 +40,4 @@ def day_6_1(lines, start_pos, start_dir,turns):
     return sum(i=="X" for i in chain(*lines))
 
 if __name__ == "__main__":
-    # print(process_input()[1:],sep="\n")
-    print(day_6_1(*process_input("input_6_1.txt")))
+    print("Day 6.1 :", day_6_1(*process_input("input_6_1.txt")))
