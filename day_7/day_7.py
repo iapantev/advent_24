@@ -1,4 +1,4 @@
-from itertools import product
+from itertools import product, repeat
 from operator import mul,add
 
 """ Store inputs as a list of tuples (not dict as repetitions are possible)"""
@@ -16,10 +16,10 @@ For each pair, generate all possible combinations of operators to place in the g
 def day_7_1(inputs: list) -> int:
     grand_total = 0
     for target, nums in inputs:
-        ops = list(product([mul,add],repeat = len(nums)-1))
-        for numset,opi in zip([nums[1:]]*len(ops),ops):
+        ops = product([mul,add],repeat = len(nums)-1)
+        for opi in ops:
             total = nums[0]
-            for num,opp in zip(numset,opi):
+            for num,opp in zip(nums[1:],opi):
                 total = opp(total,num)
             if total == target:
                 grand_total += target
@@ -30,10 +30,10 @@ def day_7_1(inputs: list) -> int:
 def day_7_2(inputs: list) -> int:
     grand_total = 0
     for target, nums in inputs:
-        ops = list(product([mul,add,concatenate],repeat=len(nums)-1))
-        for numset,opi in zip([nums[1:]]*len(ops),ops):
+        ops = product([mul,add,concatenate],repeat=len(nums)-1)
+        for opi in ops:
             total = nums[0]
-            for num,opp in zip(numset,opi):
+            for num, opp in zip(nums[1:],opi):
                 total = opp(total,num)
                 if total > target:
                     break
@@ -43,5 +43,5 @@ def day_7_2(inputs: list) -> int:
     return grand_total
 
 if __name__ == "__main__":
-    print(f"Day 7.1 : {day_7_1(process_inputs('input_7_1.txt'))}")
+    # print(f"Day 7.1 : {day_7_1(process_inputs('input_7_1.txt'))}")
     print(f"Day 7.2 : {day_7_2(process_inputs('input_7_1.txt'))}")
