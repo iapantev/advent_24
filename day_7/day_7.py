@@ -7,11 +7,9 @@ def process_inputs(filename:str = "test_7_1.txt") -> list:
         inputs = list((int(i[0]),list(map(int,i[1].split()))) for i in list(map(lambda x: x.strip().split(":"),f.readlines())))
     return inputs
 
+""" Concatenate function """
 def concatenate(a: int,b :int) -> int:
     return int(str(a)+str(b))
-
-def operate(args, func) -> int:
-    return func(*args)
 
 """ Loop over all pairs of test value & numbers.
 For each pair, generate all possible combinations of operators to place in the gaps"""
