@@ -39,5 +39,8 @@ def day_6_1(lines, start_pos, start_dir,turns):
             lines[curr_pos[0]][curr_pos[1]] = "X"
     return sum(i=="X" for i in chain(*lines))
 
+"""Option - create a graph and walk through it
+Could help with 6.2 where we need to look for cycles"""
+
 if __name__ == "__main__":
     print("Day 6.1 :", day_6_1(*process_input("input_6_1.txt")))
