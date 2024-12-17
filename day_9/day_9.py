@@ -1,3 +1,4 @@
+from collections import Counter
 def process_input(filename: str = "test_9_1.txt")->list:
     with open(f"day_9/{filename}","r") as f:
         disk_map = list(map(int,f.read().strip()))
@@ -27,7 +28,24 @@ def day_9_1(disk: list) -> int:
 def day_9_2(disk: list) -> int:
     """Idea - keep track of blocks with (fid, start, len) and
     gaps with (-1, start, len)"""
-    pass
+    # Start from file with largest id
+    max_id = max(disk,key= lambda x: x if isinstance(x,int) else -1)
+    blocks = Counter(disk)
+    blocks.__delitem__(".")
+    cloc=0
+    gaps=[]
+    while cloc < len(disk)-1:
+        while disk[cloc]!="." and cloc<len(disk)-1:
+            cloc+=1
+            gap=[]
+        while disk[cloc]=="." and cloc<len(disk)-1:
+            gap.append(cloc)
+            cloc+=1
+        gaps.append(gap)
+
+    # for cid in range(max_id,-1,-1)
+    return sorted(gaps,key=lambda x: len(x),reverse=True)
 
 if __name__ == "__main__":
-    print(day_9_1(reconstruct_disk(process_input("input_9_1.txt"))))
+    # print(day_9_1(reconstruct_disk(process_input("input_9_1.txt"))))
+    print(day_9_2(reconstruct_disk(process_input("test_9_1.txt"))))
